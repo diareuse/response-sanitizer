@@ -46,6 +46,8 @@ allprojects {
 }
 ```
 
+Latest version: [![](https://jitpack.io/v/diareuse/response-sanitizer.svg)](https://jitpack.io/#diareuse/response-sanitizer)
+
 In your module `build.gradle`:
 
 ```groovy
