@@ -1,0 +1,35 @@
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android-extensions"
+apply plugin: "kotlin-android"
+
+android {
+    compileSdkVersion 28
+
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+    }
+
+}
+
+dependencies {
+
+    //noinspection GradleDynamicVersion
+    implementation group: "androidx.core", name: "core-ktx", version: "+"
+    implementation group: "com.squareup.okhttp3", name: "okhttp", version: "3.12.0"
+    implementation group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jdk7", version: kotlin_version
+
+}
+repositories {
+    mavenCentral()
+}
