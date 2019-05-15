@@ -13,6 +13,8 @@ import java.io.IOException
 
 class ResponseSanitizer : Interceptor {
 
+    private val lock = Any()
+
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
@@ -47,7 +49,7 @@ class ResponseSanitizer : Interceptor {
     private fun JSONObject.removeNulls() {
         keys().forEach {
             if (isNull(it)) {
-                remove(it)
+                synchronized(lock) { remove(it) }
             }
             if (isArray(it)) {
                 getJSONArray(it).removeNulls()
@@ -61,7 +63,7 @@ class ResponseSanitizer : Interceptor {
     private fun JSONArray.removeNulls() {
         (0 until length()).reversed().forEach {
             if (isNull(it)) {
-                removeCompat(it)
+                synchronized(lock) { removeCompat(it) }
             }
             if (isArray(it)) {
                 getJSONArray(it).removeNulls()
