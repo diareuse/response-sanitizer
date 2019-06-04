@@ -21,11 +21,11 @@ Because Kotlin needs missing properties in order to create objects with default 
 
 ### Pitfalls?
 
-Removing whole object from JSONArray by index is supported >= KITKAT (API19). Other than that, you're good to go. Add one line to your existing code and never bother with nulls again.
+Takes a bit of time until it reiterates through all of the entries in your json.
 
 ## Usage:
 
-Preferably in dependency injection:
+Preferably as OkHttp interceptor:
 
 ```kotlin
 OkHttpClient.Builder()
@@ -33,6 +33,12 @@ OkHttpClient.Builder()
   .addInterceptor(ResponseSanitizer())
   .addInterceptor(...)
   .build()
+```
+
+or standalone:
+
+```kotlin
+val result = Sanitizer { someString.removeNulls() }
 ```
 
 In your *root* `build.gradle`
