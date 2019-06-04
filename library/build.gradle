@@ -11,6 +11,8 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -23,7 +25,9 @@ android {
 }
 
 dependencies {
-
+    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
     //noinspection GradleDynamicVersion
     implementation group: "androidx.core", name: "core-ktx", version: "+"
     implementation group: "com.squareup.okhttp3", name: "okhttp", version: "3.12.0"
