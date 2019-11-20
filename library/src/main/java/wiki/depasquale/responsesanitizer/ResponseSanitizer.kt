@@ -17,7 +17,7 @@ class ResponseSanitizer : Interceptor {
             return response
         }
 
-        return chain.proceed(request).edit {
+        return response.edit {
             val body = Sanitizer { it.body()?.string()?.removeNulls().orEmpty() }
             val responseBody = ResponseBody.create(MediaType.parse(CONTENT_TYPE_JSON), body)
             body(responseBody)
